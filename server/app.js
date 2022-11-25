@@ -61,7 +61,7 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`server port ${PORT}`);
+      console.log(`server is live at Port ${PORT}`);
     });
     /* Add Seed Data One Time */
     // User.insertMany(users);
