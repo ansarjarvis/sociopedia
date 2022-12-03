@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import path from "path";
+import cors from "cors";
 import multer from "multer";
 import User from "./models/user.js";
 import Post from "./models/post.js";
@@ -24,6 +25,7 @@ let __dirname = path.dirname(__filename);
 app.use(express.json());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 /* File Storage */
