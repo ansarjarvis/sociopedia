@@ -49,8 +49,8 @@ app.post("/posts", varifyToken, upload.single("picture"), createPost);
 /* Routes */
 
 app.use("/auth", authRouter);
-app.use("/user", userRouter);
-app.use("/post", postRouter);
+app.use("/users", userRouter);
+app.use("/posts", postRouter);
 
 /* Database setup */
 

@@ -2,7 +2,7 @@ import User from "../models/user.js";
 /* Read */
 export let getUser = async (req, res) => {
   try {
-    let { id } = req.param;
+    let { id } = req.params;
     let foundUser = await User.findById(id);
     res.status(200).json(foundUser);
   } catch (err) {
@@ -12,7 +12,7 @@ export let getUser = async (req, res) => {
 
 export let getUserFriends = async (req, res) => {
   try {
-    let { id } = req.param;
+    let { id } = req.params;
     let foundUser = await User.findById(id);
     let friends = await Promise.all(
       foundUser.friends.map((id) => User.findById(id))
@@ -33,7 +33,7 @@ export let getUserFriends = async (req, res) => {
 
 export let addRemoveFriend = async (req, res) => {
   try {
-    let { id, friendId } = req.param;
+    let { id, friendId } = req.params;
     let foundUser = await User.findById(id);
     let foundFriend = await User.findById(friendId);
     if (foundUser.friends.includes(friendId)) {
