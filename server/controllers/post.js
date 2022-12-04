@@ -36,7 +36,7 @@ export let getFeedPosts = async (req, res) => {
 
 export let getUserPosts = async (req, res) => {
   try {
-    let { userId } = req.param;
+    let { userId } = req.params;
     let posts = await Post.find(userId);
     res.status(200).json(posts);
   } catch (err) {
@@ -48,7 +48,7 @@ export let getUserPosts = async (req, res) => {
 
 export let likePost = async (req, res) => {
   try {
-    let { id } = req.param;
+    let { id } = req.params;
     let { userId } = req.body;
     let post = await Post.findById(id);
     let isliked = post.likes.get(userId);
