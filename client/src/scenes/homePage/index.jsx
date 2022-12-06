@@ -9,8 +9,8 @@ import FriendListWidget from "scenes/widgets/FriendListWidget";
 
 let HomePage = () => {
   let isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-  let user = useSelector((state) => state.user);
-  let { _id, picturePath } = user;
+  let { _id, picturePath } = useSelector((state) => state.user);
+
   return (
     <Box>
       <Navbar />

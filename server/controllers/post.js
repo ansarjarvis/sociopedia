@@ -37,7 +37,7 @@ export let getFeedPosts = async (req, res) => {
 export let getUserPosts = async (req, res) => {
   try {
     let { userId } = req.params;
-    let posts = await Post.find(userId);
+    let posts = await Post.find({ userId });
     res.status(200).json(posts);
   } catch (err) {
     res.status(409).json({ message: err.message });

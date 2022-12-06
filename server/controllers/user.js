@@ -19,8 +19,8 @@ export let getUserFriends = async (req, res) => {
     );
 
     let formattedFriends = friends.map(
-      ({ _id, firstname, lastname, occupation, location, picturePath }) => {
-        return { _id, firstname, lastname, occupation, location, picturePath };
+      ({ _id, firstName, lastName, occupation, location, picturePath }) => {
+        return { _id, firstName, lastName, occupation, location, picturePath };
       }
     );
     res.status(200).json(formattedFriends);
