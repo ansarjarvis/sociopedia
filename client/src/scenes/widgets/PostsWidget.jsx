@@ -5,7 +5,7 @@ import PostWidget from "./PostWidget";
 
 let PostsWidget = ({ userId, isProfile = false }) => {
   let dispatch = useDispatch();
-  let posts = useSelector((state) => state.posts);
+  let posts = useSelector((state) => state.posts) || [];
   let token = useSelector((state) => state.token);
 
   let getPosts = async () => {
@@ -16,6 +16,7 @@ let PostsWidget = ({ userId, isProfile = false }) => {
     let data = await response.json();
     dispatch(setPosts({ posts: data }));
   };
+
   let getUserPosts = async () => {
     let response = await fetch(`http://localhost:8000/posts/${userId}/posts`, {
       method: "GET",
@@ -33,37 +34,12 @@ let PostsWidget = ({ userId, isProfile = false }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  if (!posts || posts.length === 0) return null;
+
   console.log(posts);
+
   return (
     <>
-      {/* {posts.map(
-        ({
-          _id,
-          userId,
-          firstName,
-          lastName,
-          description,
-          location,
-          picturePath,
-          userPicturePath,
-          likes,
-          comments,
-        }) => (
-          <PostWidget
-            key={_id}
-            postId={_id}
-            postUserId={userId}
-            name={`${firstName} ${lastName}`}
-            description={description}
-            location={location}
-            picturePath={picturePath}
-            userPicturePath={userPicturePath}
-            likes={likes}
-            comments={comments}
-          />
-        )
-      )} */}
-
       {posts.map(
         ({
           _id,
@@ -91,6 +67,33 @@ let PostsWidget = ({ userId, isProfile = false }) => {
           />
         )
       )}
+      {/* {posts.map(
+        ({
+          _id,
+          userId,
+          firstName,
+          lastName,
+          description,
+          location,
+          picturePath,
+          userPicturePath,
+          likes,
+          comments,
+        }) => (
+          <PostWidget
+            key={_id}
+            postId={_id}
+            postUserId={userId}
+            name={`${firstName} ${lastName}`}
+            description={description}
+            location={location}
+            picturePath={picturePath}
+            userPicturePath={userPicturePath}
+            likes={likes}
+            comments={comments}
+          />
+        ) */}
+      {/* )} */}
     </>
   );
 };

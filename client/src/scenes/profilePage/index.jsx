@@ -15,7 +15,7 @@ let ProfilePage = () => {
   let token = useSelector((state) => state.token);
   let isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
-  let getUser = async () => {
+  const getUser = async () => {
     let response = await fetch(`http://localhost:8000/users/${userId}`, {
       method: "GET",
       headers: {
@@ -25,8 +25,9 @@ let ProfilePage = () => {
     let data = await response.json();
     setUser(data);
   };
+
   useEffect(() => {
-    getUser(); // eslint-disable-next-line
+    getUser().catch(console.log); // eslint-disable-next-line
   }, []);
 
   if (!user) return null;
